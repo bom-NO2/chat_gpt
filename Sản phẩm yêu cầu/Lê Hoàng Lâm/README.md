@@ -1,16 +1,13 @@
 # Báo cáo sản phẩm cá nhân Sprint 4 – Lê Hoàng Lâm
 
-File Word hiện là **bản nháp**, chưa dùng để nộp cuối hoặc đánh dấu thẻ Pass.
+Báo cáo đã được viết lại theo yêu cầu chỉ dựa trên hai gói tonkho-lam.zip và WebsiteBanSach-S4-L4.zip.
 
-Đã có nội dung mục 6 dựa trên sản phẩm L2/L4 và kết quả kiểm tra thật của phiên hỗ trợ; có bốn hình, trích đoạn code và giải thích. Các mục 1/2/3/7 ghi Không phụ trách.
-
-Cần bổ sung trước khi hoàn thiện:
-1. Mẫu “06. Mẫu báo cáo sản phẩm cá nhân” để dùng chính xác tên tám mục và năm ý của từng hình.
-2. Sản phẩm thật của S4-L1 và S4-L3 (sơ đồ, đặc tả/màn hình, nội dung thẻ).
-3. Bình luận Trello có giờ và phiếu kiểm thử; link commit/PR cá nhân trên repository nhóm.
-
-Không tự bịa sản phẩm, giờ Trello hoặc người chấm Pass. Chưa xác minh SQL Server thật. Commit bàn giao ZIP không được gọi là commit cá nhân code trên WebsiteBanSach.
+- Đủ 8 mục theo phạm vi người dùng giao; mục 1/2/3/7 ghi Không phụ trách.
+- Mục 6 trình bày sản phẩm S4-L2/L4: code, giải thích, bốn hình có năm ý, kết quả kiểm thử và nguồn bàn giao.
+- Mục 8 mô tả quá trình, phối hợp, khó khăn và sử dụng AI dựa trên hồ sơ.
+- Mục 4/5 ghi rõ chưa có sản phẩm S4-L1/L3 trong hai ZIP; không bịa sơ đồ, đặc tả hoặc nhận sản phẩm người khác.
+- Hồ sơ không có mẫu 06, giờ Trello và phiếu kiểm thử có người xác nhận. Không khẳng định báo cáo trùng tên mục mẫu gốc, giờ đã khớp Trello hoặc các thẻ đã Pass.
 
 Nhật ký AI: docs/prompt/lam-s4-03.md ở gốc repo này.
 
-Tải Word: mở file .docx trên GitHub rồi bấm **Download raw file** (biểu tượng tải xuống).
+Tải Word: mở file Báo cáo sản phẩm cá nhân Sprint 4.docx rồi bấm **Download raw file** (biểu tượng tải xuống).

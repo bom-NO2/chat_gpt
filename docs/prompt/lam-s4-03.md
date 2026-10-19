@@ -46,6 +46,42 @@ Nhật ký AI: file docs/prompt/lam-s4-03.md trong repo (công cụ AI, prompt n
 
 Chưa có nội dung chỉnh sửa thủ công của Lâm được cung cấp. Lâm bổ sung phần này sau khi đọc, sửa và đối chiếu thực tế, nêu rõ nội dung và lý do; không nhận sửa của AI thành sửa cá nhân.
 
-## 6. Trạng thái
+## 6. Trạng thái sau lượt đầu
 
 Bản nháp, chưa đủ điều kiện Pass hoặc nộp cuối. Cần mẫu 06, sản phẩm S4-L1/L3, mô tả/bình luận Trello kèm giờ, phiếu kiểm thử và commit/PR cá nhân thực tế. Hồ sơ được lưu trên nhánh bàn giao đã được người dùng cho phép sử dụng, không thay main hoặc đẩy vào repository nhóm khi chưa có quyền.
+
+## 7. Lượt cập nhật theo phạm vi hai ZIP người dùng chỉ định
+
+### Prompt nguyên văn
+
+```text
+viết báo cáo dựa trên mấy cái này là đc
+```
+
+Tệp người dùng gửi kèm: tonkho-lam.zip và WebsiteBanSach-S4-L4.zip.
+
+### Kiểm tra nguồn
+
+- tonkho-lam.zip: SHA-256 `9095ba362753bd5e5e0231df0cb5df98f272be72fd7d5de2c24029fdaa6ff544`.
+- WebsiteBanSach-S4-L4.zip: SHA-256 `dd7abab39ad748f37d9c40449064509a9f3030bac292ce2a365a64a8405fc56b`, khớp gói tích hợp master đã bàn giao.
+- Hai ZIP không chứa mẫu 06, sản phẩm mang mã S4-L1/S4-L3, lịch sử giờ Trello hoặc phiếu kiểm thử có người xác nhận.
+
+### Phần giữ lại
+
+Mục 6 được viết từ SQL/Model/kết nối L2 và code/bằng chứng L4 có thật. Giữ bốn hình có năm ý, trích đoạn code và giải thích, kết quả 38 HTTP + 10 Chromium, giới hạn EF InMemory và link commit bàn giao ZIP có thật. Không yêu cầu thêm tài liệu để tiếp tục phạm vi người dùng đã chọn.
+
+### Điều chỉnh do AI và lý do
+
+- Viết lại báo cáo thành bản tổng hợp dựa trên hai ZIP, bỏ nhãn bản nháp và các ô chờ điền trên bìa.
+- Giữ đủ tám mục; mục 1/2/3/7 ghi Không phụ trách. Tên mục đặt theo nội dung vì không có mẫu gốc, không khẳng định trùng tên mẫu 06.
+- Mục 4/5 giải thích nguồn không có sản phẩm L1/L3, không coi đó là mục không phụ trách hoặc tự vẽ sản phẩm để lấp chỗ thiếu.
+- Viết lại mục 8 thành các bước thực hiện, phối hợp, khó khăn, cách xử lý và sử dụng AI. Cột giờ ghi Không có dữ liệu, không lấy timestamp công cụ làm giờ Trello.
+- Phân biệt CSDL S4 trong gói L2 v3 với S3 ở master, ảnh test host với ảnh mô phỏng, commit bàn giao với commit cá nhân trên repository nhóm.
+
+### Phần Lâm tự sửa
+
+Chưa có thay đổi thủ công do Lâm cung cấp; không ghi nhận sửa của AI thành phần Lâm tự sửa.
+
+### Trạng thái sau cập nhật
+
+Đã soạn và lưu báo cáo theo phạm vi hai ZIP được người dùng chấp nhận, đúng đường dẫn tên file yêu cầu. Không kết luận đã đạt mọi điều kiện thẻ: mẫu chính thức, sản phẩm L1/L3, giờ Trello, kiểm thử SQL Server và commit/PR cá nhân vẫn không có bằng chứng trong hồ sơ. Các giới hạn đã được ghi trong báo cáo.
