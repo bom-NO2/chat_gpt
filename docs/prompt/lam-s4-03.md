@@ -85,3 +85,46 @@ Chưa có thay đổi thủ công do Lâm cung cấp; không ghi nhận sửa c�
 ### Trạng thái sau cập nhật
 
 Đã soạn và lưu báo cáo theo phạm vi hai ZIP được người dùng chấp nhận, đúng đường dẫn tên file yêu cầu. Không kết luận đã đạt mọi điều kiện thẻ: mẫu chính thức, sản phẩm L1/L3, giờ Trello, kiểm thử SQL Server và commit/PR cá nhân vẫn không có bằng chứng trong hồ sơ. Các giới hạn đã được ghi trong báo cáo.
+
+## 8. Lượt thiết kế lại theo báo cáo chung và mẫu 06 chính thức
+
+### Prompt nguyên văn
+
+```text
+dựa trên mẫu báo cáo này thiết kế lại cái mẫu báo cáo cá nhân của tôi
+```
+
+Tệp gửi kèm: `Báo cáo chung (bản gộp).docx`.
+
+Trong lúc đối chiếu, người dùng gửi thêm `06. Mẫu báo cáo sản phẩm cá nhân.docx` và chỉ định:
+
+```text
+dùng mẫu này đi
+```
+
+### Cách áp dụng và phần giữ lại
+
+- Dùng file mẫu 06 làm mẫu chính thay cho bố cục suy luận ở lượt trước. Giữ khổ A4, lề trái 3 cm/phải 1,5 cm, Times New Roman 13, khung hành chính hai cột, dòng kính gửi, thông tin người báo cáo, bảng Scrum 7 cột và khối chữ ký.
+- Điền số 05/BC-S4 theo thứ tự Lâm trong hướng dẫn, tên Lê Hoàng Lâm, vai Thành viên, nhánh lam. Không ký thay người báo cáo.
+- Dùng đúng tám tên mục trong phần mẫu chính: Phát biểu bài toán; Khảo sát; Thiết kế giao diện; Thiết kế cơ sở dữ liệu; Thiết kế hệ thống – Use Case, Activity, biểu đồ lớp; Triển khai; Kiểm thử; Quá trình thực hiện (Scrum).
+- Mục 1/2/3/7 ghi Không phụ trách theo phạm vi người dùng giao. Các bằng chứng tự kiểm tra code vẫn trình bày ở mục 6, không nhận vai Tester của Kiệt.
+- Giữ trích code/giải thích, kết quả 38 kiểm tra HTTP và 10 Chromium, cùng các giới hạn InMemory/SQL Server/GitHub đã xác minh.
+
+### Điều chỉnh do AI và lý do
+
+- Không sao chép số giờ 24/26, 4/4 Pass, commit a1b2c3d/f6e5d4c hoặc PR #7 trong ví dụ của mẫu: tài liệu ghi rõ đây là số liệu giả định.
+- Mỗi hình đổi sang đúng năm nhãn: Mục đích; Trạng thái ban đầu; Thao tác và dữ liệu nhập; Kết quả nhìn thấy; Nhận xét. Hình đánh số liên tục 1–5.
+- Mục 4 tổng hợp lại bốn bước thiết kế và bảng/cột/ràng buộc từ SQL có trong hồ sơ; dựng một ERD nhóm sách bằng Graphviz, kèm mã nguồn DOT và PNG trong Tài liệu kèm theo. Ghi rõ đây là sơ đồ tái dựng khi soạn báo cáo, không tự nhận là bản S4-L1 đã được review.
+- Phân biệt 27 bảng của báo cáo chung cũ với 23 bảng trong script master của gói S4-L4. Không lấy ERD cũ có trường khác phiên bản làm bằng chứng schema hiện hành.
+- Mục 5 tổng hợp bảng đối chiếu UC12 từ code và quy tắc hiện có theo đúng tên thẻ S4-L3 nêu trong mẫu. Ghi rõ chưa có tệp đặc tả S4-L3 đã review; phần sửa/trạng thái của Hùng/Huy chỉ được trích để đối chiếu, không nhận là code của Lâm.
+- Bảng Scrum giữ đúng 7 cột; giờ, hạn, nộp, review không có nguồn thì ghi Chưa có dữ liệu/Chưa có xác nhận, không lấy thời gian commit làm giờ Trello.
+- Thay câu cam kết tuyệt đối về giờ Trello bằng xác nhận phạm vi bằng chứng thực tế, do chưa thể kiểm chứng giờ; giữ phần ký để Lâm tự rà soát và ký.
+- Bỏ toàn bộ trang hướng dẫn và ví dụ của mẫu khỏi báo cáo đã điền.
+
+### Phần Lâm tự sửa
+
+Chưa có chỉnh sửa thủ công do Lâm cung cấp. Các chỉnh sửa trên do AI thực hiện theo yêu cầu đổi mẫu; không nhận là phần Lâm tự sửa.
+
+### Kiểm tra đầu ra
+
+Đã kiểm tra cấu trúc DOCX: đủ đúng tám tiêu đề chính; bốn mục Không phụ trách; năm hình có đủ năm nhãn chính thức; bảng Scrum 7 cột với bốn thẻ và dòng tổng; số 05/BC-S4 và khối người báo cáo; không còn phần hướng dẫn/ví dụ và placeholder của mẫu. Kiểm tra tính toàn vẹn ZIP của DOCX không có lỗi. Chưa kiểm tra bố cục bằng Microsoft Word hoặc LibreOffice; người báo cáo cần rà lại khi mở trên máy.

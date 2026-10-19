@@ -1,0 +1,19 @@
+digraph G {
+ graph [rankdir=LR, bgcolor="white", pad="0.25", nodesep="0.35", ranksep="0.6", fontname="DejaVu Sans"];
+ node [shape=record, fontname="DejaVu Sans", fontsize=11, style="filled", fillcolor="#f5f7fa", color="#556070"];
+ edge [fontname="DejaVu Sans", fontsize=10, color="#556070", arrowsize=0.7];
+ Sach [label="{Sach|PK MaSach : INT IDENTITY\lISBN : VARCHAR(13), NULL\lTenSach : NVARCHAR(200)\lFK MaTheLoai : INT\lFK MaNXB : INT\lNamXuatBan : SMALLINT\lHinhThuc : TINYINT\lGiaBan : DECIMAL(12,0)\lTrangThai : TINYINT\lFK NguoiTao / NguoiCapNhat\l}"];
+ TheLoai [label="{TheLoai|PK MaTheLoai : INT\lTenTheLoai : NVARCHAR(100)\lTrangThai : TINYINT\l}"];
+ NXB [label="{NhaXuatBan|PK MaNXB : INT\lTenNXB : NVARCHAR(150)\l}"];
+ TacGia [label="{TacGia|PK MaTacGia : INT\lTenTacGia : NVARCHAR(150)\l}"];
+ STG [label="{SachTacGia|PK, FK MaSach : INT\lPK, FK MaTacGia : INT\l}"];
+ NV [label="{NhanVien|PK MaNhanVien : INT\lFK MaTaiKhoan : INT UNIQUE\lHoTen : NVARCHAR(100)\l}"];
+ DX [label="{DeXuatGia|PK MaDeXuat : INT\lFK MaSach : INT\lGiaCu / GiaMoi : DECIMAL(12,0)\lTrangThai : TINYINT\lFK NguoiDeXuat / NguoiDuyet\l}"];
+ TheLoai -> Sach [label="1 : n (MaTheLoai)"];
+ NXB -> Sach [label="1 : n (MaNXB)"];
+ Sach -> STG [label="1 : n (MaSach)"];
+ TacGia -> STG [label="1 : n (MaTacGia)"];
+ NV -> Sach [label="1 : n (tạo / cập nhật)"];
+ Sach -> DX [label="1 : n (MaSach)"];
+ NV -> DX [label="1 : n (đề xuất / duyệt)"];
+}
