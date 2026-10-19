@@ -1,0 +1,126 @@
+@model SachBieuMau
+@* Biểu mẫu dùng chung cho thêm và sửa sách *@
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="row g-3">
+    @if (Model.MaSach > 0)
+    {
+        <div class="col-12 col-md-3">
+            <label class="form-label">Mã sách</label>
+            <input class="form-control" value="@Model.MaSach" readonly aria-readonly="true" />
+            <div class="form-text">Mã sách không được sửa.</div>
+        </div>
+    }
+    <div class="col-12 col-md-@(Model.MaSach > 0 ? 6 : 9)">
+        <label asp-for="TenSach" class="form-label"></label> <span class="text-danger">*</span>
+        <input asp-for="TenSach" class="form-control" />
+        <span asp-validation-for="TenSach" class="text-danger small"></span>
+    </div>
+    <div class="col-12 col-md-3">
+        <label asp-for="ISBN" class="form-label"></label>
+        <input asp-for="ISBN" class="form-control" inputmode="numeric" placeholder="10 hoặc 13 chữ số" />
+        <span asp-validation-for="ISBN" class="text-danger small"></span>
+    </div>
+
+    <div class="col-12">
+        <label class="form-label">Tác giả <span class="text-danger">*</span></label>
+        <div id="ds-tac-gia" class="d-flex flex-column gap-2">
+            @for (var i = 0; i < Model.TacGia.Count; i++)
+            {
+                <div class="input-group dong-tac-gia">
+                    <input name="TacGia" value="@Model.TacGia[i]" class="form-control" aria-label="Tên tác giả" />
+                    <button type="button" class="btn btn-outline-secondary nut-bo-tac-gia" aria-label="Bỏ dòng tác giả này">−</button>
+                </div>
+            }
+        </div>
+        @* Nút + thêm dòng nhập động, như ví dụ thêm size và màu của thầy *@
+        <button type="button" id="nut-them-tac-gia" class="btn btn-sm btn-outline-primary mt-2">+ Thêm tác giả</button>
+        <span asp-validation-for="TacGia" class="text-danger small d-block"></span>
+    </div>
+
+    <div class="col-12 col-md-4">
+        <label asp-for="MaTheLoai" class="form-label"></label> <span class="text-danger">*</span>
+        <select asp-for="MaTheLoai" asp-items="ViewBag.TheLoai" class="form-select"><option value="">Chọn thể loại</option></select>
+        <span asp-validation-for="MaTheLoai" class="text-danger small"></span>
+    </div>
+    <div class="col-12 col-md-4">
+        <label asp-for="MaNXB" class="form-label"></label> <span class="text-danger">*</span>
+        <select asp-for="MaNXB" asp-items="ViewBag.NXB" class="form-select"><option value="">Chọn nhà xuất bản</option></select>
+        <span asp-validation-for="MaNXB" class="text-danger small"></span>
+    </div>
+    <div class="col-6 col-md-2">
+        <label asp-for="NamXuatBan" class="form-label"></label> <span class="text-danger">*</span>
+        <input asp-for="NamXuatBan" class="form-control" />
+        <span asp-validation-for="NamXuatBan" class="text-danger small"></span>
+    </div>
+    <div class="col-6 col-md-2">
+        <label asp-for="HinhThuc" class="form-label"></label>
+        <select asp-for="HinhThuc" class="form-select">
+            <option value="1">Bìa mềm</option>
+            <option value="2">Bìa cứng</option>
+        </select>
+        <span asp-validation-for="HinhThuc" class="text-danger small"></span>
+    </div>
+
+    <div class="col-6 col-md-3">
+        <label asp-for="GiaBan" class="form-label"></label> <span class="text-danger">*</span>
+        <input asp-for="GiaBan" class="form-control" type="number" step="1" min="1000" />
+        <span asp-validation-for="GiaBan" class="text-danger small"></span>
+    </div>
+    <div class="col-6 col-md-3">
+        <label asp-for="SoLuongCoTheBan" class="form-label"></label>
+        <input asp-for="SoLuongCoTheBan" class="form-control" type="number" min="0" />
+        <span asp-validation-for="SoLuongCoTheBan" class="text-danger small"></span>
+    </div>
+    <div class="col-4 col-md-2">
+        <label asp-for="NguongSapHet" class="form-label"></label>
+        <input asp-for="NguongSapHet" class="form-control" type="number" min="0" />
+        <span asp-validation-for="NguongSapHet" class="text-danger small"></span>
+    </div>
+    <div class="col-4 col-md-2">
+        <label asp-for="SoTrang" class="form-label"></label>
+        <input asp-for="SoTrang" class="form-control" type="number" min="1" />
+        <span asp-validation-for="SoTrang" class="text-danger small"></span>
+    </div>
+    <div class="col-4 col-md-2">
+        <label asp-for="KhoiLuongGram" class="form-label"></label>
+        <input asp-for="KhoiLuongGram" class="form-control" type="number" min="1" />
+        <span asp-validation-for="KhoiLuongGram" class="text-danger small"></span>
+    </div>
+
+    <div class="col-12">
+        <label asp-for="MoTa" class="form-label"></label>
+        <textarea asp-for="MoTa" class="form-control" rows="4"></textarea>
+    </div>
+    <div class="col-12">
+        <label asp-for="AnhBiaMoi" class="form-label"></label>
+        @if (!string.IsNullOrEmpty(Model.AnhBiaHienTai))
+        {
+            <div class="mb-2"><img src="@Model.AnhBiaHienTai" alt="Ảnh bìa hiện tại" style="max-height:120px" class="border rounded" onerror="this.style.display='none'" /> <span class="small text-muted">Chọn ảnh mới nếu muốn thay.</span></div>
+        }
+        <input asp-for="AnhBiaMoi" type="file" accept=".jpg,.jpeg,.png,.webp" class="form-control" />
+        <div class="form-text">Nhận .jpg, .jpeg, .png, .webp, tối đa 2 MB. Nếu có lỗi, vui lòng chọn lại ảnh.</div>
+        <span asp-validation-for="AnhBiaMoi" class="text-danger small"></span>
+    </div>
+</div>
+
+<template id="mau-dong-tac-gia">
+    <div class="input-group dong-tac-gia">
+        <input name="TacGia" class="form-control" aria-label="Tên tác giả" />
+        <button type="button" class="btn btn-outline-secondary nut-bo-tac-gia" aria-label="Bỏ dòng tác giả này">−</button>
+    </div>
+</template>
+<script>
+    (function () {
+        const ds = document.getElementById('ds-tac-gia');
+        document.getElementById('nut-them-tac-gia').addEventListener('click', function () {
+            ds.appendChild(document.getElementById('mau-dong-tac-gia').content.cloneNode(true));
+            ds.lastElementChild.querySelector('input').focus();
+        });
+        ds.addEventListener('click', function (e) {
+            if (!e.target.classList.contains('nut-bo-tac-gia')) return;
+            if (ds.querySelectorAll('.dong-tac-gia').length > 1) e.target.closest('.dong-tac-gia').remove();
+            else e.target.closest('.dong-tac-gia').querySelector('input').value = '';
+        });
+    })();
+</script>
