@@ -13,3 +13,7 @@ Nhánh bàn giao trên bom-NO2/chat_gpt được người dùng cho phép tạo 
 Hướng dẫn sau giải nén: WebsiteBanSach/docs/S4-L4/BAN-GIAO.md.
 
 SHA-256 ZIP: `dd7abab39ad748f37d9c40449064509a9f3030bac292ce2a365a64a8405fc56b`
+
+## Sản phẩm thiết kế S3-L1
+
+Tải `Lam-S3-L1-Thiet-ke-CSDL-Sprint3.zip` để có Word 4 bước, hai ERD PNG/SVG, mã DOT, từ điển JSON và nhật ký `lam-s3-l1.md`. Đây là thiết kế đề xuất theo SQL hiện có; chưa có đúng nguồn Sprint 3 và đặc tả phụ thuộc để xác nhận khớp hoàn toàn. Không có migration hoặc SQL Server được thực thi.

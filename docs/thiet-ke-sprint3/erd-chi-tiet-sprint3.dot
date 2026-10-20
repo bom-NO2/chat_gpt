@@ -1,0 +1,28 @@
+digraph G {
+graph [rankdir=LR, bgcolor="white", pad="0.25", nodesep="0.35", ranksep="0.8", fontname="DejaVu Sans"];
+node [shape=plain,fontname="DejaVu Sans"];
+edge [fontname="DejaVu Sans",fontsize=10,color="#425466",arrowsize=0.7];
+TaiKhoan [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#dbeafe"><B>TaiKhoan</B></TD></TR><TR><TD ALIGN="LEFT">MaTaiKhoan : INT [PK]</TD></TR><TR><TD ALIGN="LEFT">Email : NVARCHAR(100)</TD></TR><TR><TD ALIGN="LEFT">MatKhauHash : NVARCHAR(255)</TD></TR><TR><TD ALIGN="LEFT">VaiTro : TINYINT</TD></TR><TR><TD ALIGN="LEFT">TrangThai : TINYINT</TD></TR><TR><TD ALIGN="LEFT">NgayTao : DATETIME2</TD></TR></TABLE>>];
+GioHang [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#dbeafe"><B>GioHang</B></TD></TR><TR><TD ALIGN="LEFT">MaKhachHang : INT [PK]</TD></TR><TR><TD ALIGN="LEFT">MaSach : INT [PK]</TD></TR><TR><TD ALIGN="LEFT">SoLuong : INT</TD></TR><TR><TD ALIGN="LEFT">NgayThem : DATETIME2</TD></TR></TABLE>>];
+DonHang [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#dbeafe"><B>DonHang</B></TD></TR><TR><TD ALIGN="LEFT">MaDon : INT [PK]</TD></TR><TR><TD ALIGN="LEFT">MaKhachHang : INT</TD></TR><TR><TD ALIGN="LEFT">NgayDat : DATETIME2</TD></TR><TR><TD ALIGN="LEFT">TrangThai : TINYINT</TD></TR><TR><TD ALIGN="LEFT">TenNguoiNhan : NVARCHAR(100)</TD></TR><TR><TD ALIGN="LEFT">SoDienThoaiNhan : VARCHAR(15)</TD></TR><TR><TD ALIGN="LEFT">DiaChiNhan : NVARCHAR(255)</TD></TR><TR><TD ALIGN="LEFT">TinhThanh : NVARCHAR(100)</TD></TR><TR><TD ALIGN="LEFT">PhuongXa : NVARCHAR(100)</TD></TR><TR><TD ALIGN="LEFT">PhiGiao : DECIMAL(12,0)</TD></TR><TR><TD ALIGN="LEFT">TuyenGiao : TINYINT</TD></TR><TR><TD ALIGN="LEFT">KhoiLuongTinhPhiGram : INT</TD></TR><TR><TD ALIGN="LEFT">LyDoHuy : NVARCHAR(255)</TD></TR><TR><TD ALIGN="LEFT">NgayCapNhat : DATETIME2</TD></TR><TR><TD ALIGN="LEFT">NguoiCapNhat : INT</TD></TR></TABLE>>];
+ChiTietDonHang [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#dbeafe"><B>ChiTietDonHang (*)</B></TD></TR><TR><TD ALIGN="LEFT">MaDon : INT [PK]</TD></TR><TR><TD ALIGN="LEFT">MaSach : INT [PK]</TD></TR><TR><TD ALIGN="LEFT">SoLuong : INT</TD></TR><TR><TD ALIGN="LEFT">DonGia : DECIMAL(12,0)</TD></TR></TABLE>>];
+DiaChiKhachHang [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#dbeafe"><B>DiaChiKhachHang</B></TD></TR><TR><TD ALIGN="LEFT">MaDiaChi : INT [PK]</TD></TR><TR><TD ALIGN="LEFT">MaKhachHang : INT</TD></TR><TR><TD ALIGN="LEFT">TenNguoiNhan : NVARCHAR(100)</TD></TR><TR><TD ALIGN="LEFT">SoDienThoai : VARCHAR(15)</TD></TR><TR><TD ALIGN="LEFT">DiaChiChiTiet : NVARCHAR(255)</TD></TR><TR><TD ALIGN="LEFT">TinhThanh : NVARCHAR(100)</TD></TR><TR><TD ALIGN="LEFT">PhuongXa : NVARCHAR(100)</TD></TR><TR><TD ALIGN="LEFT">MacDinh : BIT</TD></TR></TABLE>>];
+BangPhiGiao [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#dbeafe"><B>BangPhiGiao</B></TD></TR><TR><TD ALIGN="LEFT">Tuyen : TINYINT [PK]</TD></TR><TR><TD ALIGN="LEFT">TenTuyen : NVARCHAR(50)</TD></TR><TR><TD ALIGN="LEFT">PhiDen1000g : DECIMAL(12,0)</TD></TR><TR><TD ALIGN="LEFT">PhiDen1500g : DECIMAL(12,0)</TD></TR><TR><TD ALIGN="LEFT">PhiDen2000g : DECIMAL(12,0)</TD></TR><TR><TD ALIGN="LEFT">PhiMoi500gTiep : DECIMAL(12,0)</TD></TR></TABLE>>];
+CauHinhCuaHang [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#dbeafe"><B>CauHinhCuaHang</B></TD></TR><TR><TD ALIGN="LEFT">MaCauHinh : TINYINT [PK]</TD></TR><TR><TD ALIGN="LEFT">TenCuaHang : NVARCHAR(150)</TD></TR><TR><TD ALIGN="LEFT">DiaChiKho : NVARCHAR(255)</TD></TR><TR><TD ALIGN="LEFT">TinhThanhKho : NVARCHAR(100)</TD></TR><TR><TD ALIGN="LEFT">PhuongXaKho : NVARCHAR(100)</TD></TR><TR><TD ALIGN="LEFT">KhoiLuongDongGoiGram : INT</TD></TR><TR><TD ALIGN="LEFT">NgayCapNhat : DATETIME2</TD></TR></TABLE>>];
+KhachHang [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#e5e7eb"><B>KhachHang</B></TD></TR><TR><TD ALIGN="LEFT">PK MaKhachHang</TD></TR><TR><TD ALIGN="LEFT">FK UNIQUE MaTaiKhoan</TD></TR></TABLE>>];
+Sach [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#e5e7eb"><B>Sach</B></TD></TR><TR><TD ALIGN="LEFT">PK MaSach</TD></TR><TR><TD ALIGN="LEFT">FK MaTheLoai / MaNXB</TD></TR><TR><TD ALIGN="LEFT">GiaBan / KhoiLuongGram</TD></TR></TABLE>>];
+NhanVien [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#e5e7eb"><B>NhanVien</B></TD></TR><TR><TD ALIGN="LEFT">PK MaNhanVien</TD></TR></TABLE>>];
+TaiKhoan -> KhachHang [label="1 : 0..1"];
+KhachHang -> GioHang [label="1 : 0..n (MaKhachHang)"];
+Sach -> GioHang [label="1 : 0..n (MaSach)"];
+KhachHang -> DonHang [label="1 : 0..n (MaKhachHang)"];
+BangPhiGiao -> DonHang [label="1 : 0..n (TuyenGiao)"];
+NhanVien -> DonHang [label="0..1 nhân viên / đơn; 0..n đơn / nhân viên"];
+DonHang -> ChiTietDonHang [label="1 : 1..n (nghiệp vụ; MaDon)"];
+Sach -> ChiTietDonHang [label="1 : 0..n (MaSach)"];
+KhachHang -> DiaChiKhachHang [label="1 : 0..n (MaKhachHang)"];
+DiaChiKhachHang -> DonHang [style=dashed,color="#aa6000",label="sao chép địa chỉ lúc đặt
+(không phải FK)",constraint=false];
+CauHinhCuaHang -> DonHang [style=dashed,color="#aa6000",label="điểm gửi / đóng gói để tính phí
+(không phải FK)",constraint=false];
+}

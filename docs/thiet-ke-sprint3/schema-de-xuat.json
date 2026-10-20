@@ -1,0 +1,372 @@
+{
+  "status": "Đề xuất thiết kế; chưa triển khai migration",
+  "tables": {
+    "TaiKhoan": [
+      [
+        "MaTaiKhoan",
+        "INT",
+        "Không",
+        "PK, IDENTITY(1,1)"
+      ],
+      [
+        "Email",
+        "NVARCHAR(100)",
+        "Không",
+        "UNIQUE; lưu email đã Trim/chuẩn hóa thống nhất với đăng nhập"
+      ],
+      [
+        "MatKhauHash",
+        "NVARCHAR(255)",
+        "Không",
+        "Chỉ lưu chuỗi hash của PasswordHasher; không có cột mật khẩu rõ"
+      ],
+      [
+        "VaiTro",
+        "TINYINT",
+        "Không",
+        "Giữ mã 1–4 của nguồn hiện có; đối chiếu lại S3-H1 trước triển khai"
+      ],
+      [
+        "TrangThai",
+        "TINYINT",
+        "Không",
+        "DEFAULT 1; CHECK IN (0,1): khóa/hoạt động"
+      ],
+      [
+        "NgayTao",
+        "DATETIME2",
+        "Không",
+        "DEFAULT SYSDATETIME()"
+      ]
+    ],
+    "GioHang": [
+      [
+        "MaKhachHang",
+        "INT",
+        "Không",
+        "PK ghép, FK → KhachHang.MaKhachHang"
+      ],
+      [
+        "MaSach",
+        "INT",
+        "Không",
+        "PK ghép, FK → Sach.MaSach"
+      ],
+      [
+        "SoLuong",
+        "INT",
+        "Không",
+        "CHECK > 0; khi mua phải kiểm tra lại hàng/giới hạn nghiệp vụ"
+      ],
+      [
+        "NgayThem",
+        "DATETIME2",
+        "Không",
+        "DEFAULT SYSDATETIME()"
+      ]
+    ],
+    "DonHang": [
+      [
+        "MaDon",
+        "INT",
+        "Không",
+        "PK, IDENTITY(1,1); giữ tên khóa của nguồn hiện có"
+      ],
+      [
+        "MaKhachHang",
+        "INT",
+        "Không",
+        "FK → KhachHang.MaKhachHang"
+      ],
+      [
+        "NgayDat",
+        "DATETIME2",
+        "Không",
+        "DEFAULT SYSDATETIME(); thời điểm chốt đơn"
+      ],
+      [
+        "TrangThai",
+        "TINYINT",
+        "Không",
+        "DEFAULT 1; CHECK 1–5 theo bảng trạng thái hiện có"
+      ],
+      [
+        "TenNguoiNhan",
+        "NVARCHAR(100)",
+        "Không",
+        "Bản sao tên người nhận tại lúc đặt"
+      ],
+      [
+        "SoDienThoaiNhan",
+        "VARCHAR(15)",
+        "Không",
+        "Bản sao số điện thoại, kiểm tra định dạng ở ứng dụng"
+      ],
+      [
+        "DiaChiNhan",
+        "NVARCHAR(255)",
+        "Không",
+        "Số nhà/đường/địa chỉ chi tiết, bản sao tại lúc đặt"
+      ],
+      [
+        "TinhThanh",
+        "NVARCHAR(100)",
+        "Không",
+        "Bản sao tên Tỉnh/Thành đã kiểm tra; đề xuất tăng từ 50 lên 100 ký tự"
+      ],
+      [
+        "PhuongXa",
+        "NVARCHAR(100)",
+        "Không",
+        "BỔ SUNG: bản sao Phường/Xã tại lúc đặt; bắt buộc với đơn mới"
+      ],
+      [
+        "PhiGiao",
+        "DECIMAL(12,0)",
+        "Không",
+        "CHECK >= 0; PHÍ CHỐT, không tính lại từ biểu phí khi đọc đơn"
+      ],
+      [
+        "TuyenGiao",
+        "TINYINT",
+        "Không",
+        "BỔ SUNG: FK → BangPhiGiao.Tuyen; tuyến đã chọn lúc chốt"
+      ],
+      [
+        "KhoiLuongTinhPhiGram",
+        "INT",
+        "Không",
+        "BỔ SUNG: CHECK > 0; khối lượng tính phí đã chốt"
+      ],
+      [
+        "LyDoHuy",
+        "NVARCHAR(255)",
+        "Có",
+        "Giữ theo nguồn; bắt buộc theo quy trình khi hủy nếu đặc tả yêu cầu"
+      ],
+      [
+        "NgayCapNhat",
+        "DATETIME2",
+        "Không",
+        "DEFAULT SYSDATETIME()"
+      ],
+      [
+        "NguoiCapNhat",
+        "INT",
+        "Có",
+        "FK → NhanVien.MaNhanVien; bảng nội bộ có sẵn ngoài phạm vi"
+      ]
+    ],
+    "ChiTietDonHang": [
+      [
+        "MaDon",
+        "INT",
+        "Không",
+        "PK ghép, FK → DonHang.MaDon"
+      ],
+      [
+        "MaSach",
+        "INT",
+        "Không",
+        "PK ghép, FK → Sach.MaSach"
+      ],
+      [
+        "SoLuong",
+        "INT",
+        "Không",
+        "CHECK > 0; số lượng đã đặt"
+      ],
+      [
+        "DonGia",
+        "DECIMAL(12,0)",
+        "Không",
+        "CHECK > 0; GIÁ LÚC ĐẶT, không đọc Sach.GiaBan để tính lại đơn cũ"
+      ]
+    ],
+    "DiaChiKhachHang": [
+      [
+        "MaDiaChi",
+        "INT",
+        "Không",
+        "PK, IDENTITY(1,1)"
+      ],
+      [
+        "MaKhachHang",
+        "INT",
+        "Không",
+        "FK → KhachHang.MaKhachHang; kiểm tra chủ sở hữu trước đọc/sửa"
+      ],
+      [
+        "TenNguoiNhan",
+        "NVARCHAR(100)",
+        "Không",
+        "Thông tin địa chỉ đang lưu, có thể được khách chỉnh sửa"
+      ],
+      [
+        "SoDienThoai",
+        "VARCHAR(15)",
+        "Không",
+        "Kiểm tra định dạng ở ứng dụng"
+      ],
+      [
+        "DiaChiChiTiet",
+        "NVARCHAR(255)",
+        "Không",
+        "Số nhà/đường/chi tiết hiện tại"
+      ],
+      [
+        "TinhThanh",
+        "NVARCHAR(100)",
+        "Không",
+        "Tên Tỉnh/Thành hiện tại; kiểm tra theo danh mục hành chính thật"
+      ],
+      [
+        "PhuongXa",
+        "NVARCHAR(100)",
+        "Không",
+        "BỔ SUNG: Phường/Xã thuộc Tỉnh/Thành đã chọn"
+      ],
+      [
+        "MacDinh",
+        "BIT",
+        "Không",
+        "DEFAULT 0; unique index lọc theo MaKhachHang WHERE MacDinh=1"
+      ]
+    ],
+    "BangPhiGiao": [
+      [
+        "Tuyen",
+        "TINYINT",
+        "Không",
+        "PK; CHECK 1–4: nội tỉnh/nội miền/đặc biệt/liên miền theo nguồn"
+      ],
+      [
+        "TenTuyen",
+        "NVARCHAR(50)",
+        "Không",
+        "Tên tuyến; không dùng tên làm khóa"
+      ],
+      [
+        "PhiDen1000g",
+        "DECIMAL(12,0)",
+        "Không",
+        "CHECK >= 0"
+      ],
+      [
+        "PhiDen1500g",
+        "DECIMAL(12,0)",
+        "Không",
+        "CHECK >= 0"
+      ],
+      [
+        "PhiDen2000g",
+        "DECIMAL(12,0)",
+        "Không",
+        "CHECK >= 0"
+      ],
+      [
+        "PhiMoi500gTiep",
+        "DECIMAL(12,0)",
+        "Không",
+        "CHECK >= 0; mỗi 500g vượt 2000g, làm tròn lên"
+      ]
+    ],
+    "CauHinhCuaHang": [
+      [
+        "MaCauHinh",
+        "TINYINT",
+        "Không",
+        "PK; CHECK MaCauHinh=1; cấu hình 1 cửa hàng"
+      ],
+      [
+        "TenCuaHang",
+        "NVARCHAR(150)",
+        "Không",
+        "Tên hiển thị của cửa hàng"
+      ],
+      [
+        "DiaChiKho",
+        "NVARCHAR(255)",
+        "Không",
+        "Địa chỉ gửi chi tiết đang áp dụng"
+      ],
+      [
+        "TinhThanhKho",
+        "NVARCHAR(100)",
+        "Không",
+        "Điểm gửi để xác định tuyến; kiểm tra danh mục hành chính"
+      ],
+      [
+        "PhuongXaKho",
+        "NVARCHAR(100)",
+        "Không",
+        "Phường/Xã điểm gửi"
+      ],
+      [
+        "KhoiLuongDongGoiGram",
+        "INT",
+        "Không",
+        "DEFAULT 0; CHECK >=0; phụ phí trọng lượng bao bì theo cấu hình"
+      ],
+      [
+        "NgayCapNhat",
+        "DATETIME2",
+        "Không",
+        "DEFAULT SYSDATETIME()"
+      ]
+    ]
+  },
+  "foreign_keys": [
+    [
+      "GioHang",
+      "MaKhachHang",
+      "KhachHang",
+      "MaKhachHang"
+    ],
+    [
+      "GioHang",
+      "MaSach",
+      "Sach",
+      "MaSach"
+    ],
+    [
+      "DonHang",
+      "MaKhachHang",
+      "KhachHang",
+      "MaKhachHang"
+    ],
+    [
+      "DonHang",
+      "TuyenGiao",
+      "BangPhiGiao",
+      "Tuyen"
+    ],
+    [
+      "DonHang",
+      "NguoiCapNhat",
+      "NhanVien",
+      "MaNhanVien"
+    ],
+    [
+      "ChiTietDonHang",
+      "MaDon",
+      "DonHang",
+      "MaDon"
+    ],
+    [
+      "ChiTietDonHang",
+      "MaSach",
+      "Sach",
+      "MaSach"
+    ],
+    [
+      "DiaChiKhachHang",
+      "MaKhachHang",
+      "KhachHang",
+      "MaKhachHang"
+    ]
+  ],
+  "physical_name_mapping": {
+    "ChiTietDonHang": "ChiTietDon trong nguồn hiện có"
+  }
+}

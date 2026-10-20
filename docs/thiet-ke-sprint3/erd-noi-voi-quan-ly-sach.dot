@@ -1,0 +1,36 @@
+digraph G {
+graph [rankdir=LR, bgcolor="white", pad="0.25", nodesep="0.35", ranksep="0.8", fontname="DejaVu Sans"];
+node [shape=plain,fontname="DejaVu Sans"];
+edge [fontname="DejaVu Sans",fontsize=10,color="#425466",arrowsize=0.7];
+TaiKhoan [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#dbeafe"><B>TaiKhoan</B></TD></TR><TR><TD ALIGN="LEFT">MaTaiKhoan</TD></TR><TR><TD ALIGN="LEFT">Email</TD></TR><TR><TD ALIGN="LEFT">MatKhauHash</TD></TR></TABLE>>];
+GioHang [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#dbeafe"><B>GioHang</B></TD></TR><TR><TD ALIGN="LEFT">MaKhachHang</TD></TR><TR><TD ALIGN="LEFT">MaSach</TD></TR><TR><TD ALIGN="LEFT">SoLuong</TD></TR></TABLE>>];
+DonHang [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#dbeafe"><B>DonHang</B></TD></TR><TR><TD ALIGN="LEFT">MaDon</TD></TR><TR><TD ALIGN="LEFT">MaKhachHang</TD></TR><TR><TD ALIGN="LEFT">TinhThanh</TD></TR><TR><TD ALIGN="LEFT">PhuongXa</TD></TR><TR><TD ALIGN="LEFT">PhiGiao</TD></TR></TABLE>>];
+ChiTietDonHang [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#dbeafe"><B>ChiTietDonHang (*)</B></TD></TR><TR><TD ALIGN="LEFT">MaDon</TD></TR><TR><TD ALIGN="LEFT">MaSach</TD></TR><TR><TD ALIGN="LEFT">SoLuong</TD></TR><TR><TD ALIGN="LEFT">DonGia</TD></TR></TABLE>>];
+DiaChiKhachHang [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#dbeafe"><B>DiaChiKhachHang</B></TD></TR><TR><TD ALIGN="LEFT">MaDiaChi</TD></TR><TR><TD ALIGN="LEFT">MaKhachHang</TD></TR><TR><TD ALIGN="LEFT">TinhThanh</TD></TR><TR><TD ALIGN="LEFT">PhuongXa</TD></TR></TABLE>>];
+BangPhiGiao [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#dbeafe"><B>BangPhiGiao</B></TD></TR><TR><TD ALIGN="LEFT">Tuyen</TD></TR><TR><TD ALIGN="LEFT">PhiDen1000g</TD></TR><TR><TD ALIGN="LEFT">PhiMoi500gTiep</TD></TR></TABLE>>];
+CauHinhCuaHang [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#dbeafe"><B>CauHinhCuaHang</B></TD></TR><TR><TD ALIGN="LEFT">MaCauHinh</TD></TR><TR><TD ALIGN="LEFT">TinhThanhKho</TD></TR><TR><TD ALIGN="LEFT">PhuongXaKho</TD></TR></TABLE>>];
+KhachHang [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#e5e7eb"><B>KhachHang</B></TD></TR><TR><TD ALIGN="LEFT">PK MaKhachHang</TD></TR><TR><TD ALIGN="LEFT">FK UNIQUE MaTaiKhoan</TD></TR></TABLE>>];
+Sach [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#e5e7eb"><B>Sach</B></TD></TR><TR><TD ALIGN="LEFT">PK MaSach</TD></TR><TR><TD ALIGN="LEFT">FK MaTheLoai / MaNXB</TD></TR><TR><TD ALIGN="LEFT">GiaBan / KhoiLuongGram</TD></TR></TABLE>>];
+NhanVien [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#e5e7eb"><B>NhanVien</B></TD></TR><TR><TD ALIGN="LEFT">PK MaNhanVien</TD></TR></TABLE>>];
+TheLoai [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#e5e7eb"><B>TheLoai</B></TD></TR><TR><TD ALIGN="LEFT">PK MaTheLoai</TD></TR></TABLE>>];
+NhaXuatBan [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#e5e7eb"><B>NhaXuatBan</B></TD></TR><TR><TD ALIGN="LEFT">PK MaNXB</TD></TR></TABLE>>];
+TacGia [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#e5e7eb"><B>TacGia</B></TD></TR><TR><TD ALIGN="LEFT">PK MaTacGia</TD></TR></TABLE>>];
+SachTacGia [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#e5e7eb"><B>SachTacGia</B></TD></TR><TR><TD ALIGN="LEFT">PK/FK MaSach, MaTacGia</TD></TR></TABLE>>];
+TaiKhoan -> KhachHang [label="1 : 0..1"];
+KhachHang -> GioHang [label="1 : 0..n (MaKhachHang)"];
+Sach -> GioHang [label="1 : 0..n (MaSach)"];
+KhachHang -> DonHang [label="1 : 0..n (MaKhachHang)"];
+BangPhiGiao -> DonHang [label="1 : 0..n (TuyenGiao)"];
+NhanVien -> DonHang [label="0..1 nhân viên / đơn; 0..n đơn / nhân viên"];
+DonHang -> ChiTietDonHang [label="1 : 1..n (nghiệp vụ; MaDon)"];
+Sach -> ChiTietDonHang [label="1 : 0..n (MaSach)"];
+KhachHang -> DiaChiKhachHang [label="1 : 0..n (MaKhachHang)"];
+TheLoai -> Sach [label="1 : 0..n"];
+NhaXuatBan -> Sach [label="1 : 0..n"];
+Sach -> SachTacGia [label="1 : 0..n"];
+TacGia -> SachTacGia [label="1 : 0..n"];
+DiaChiKhachHang -> DonHang [style=dashed,color="#aa6000",label="sao chép địa chỉ lúc đặt
+(không phải FK)",constraint=false];
+CauHinhCuaHang -> DonHang [style=dashed,color="#aa6000",label="điểm gửi / đóng gói để tính phí
+(không phải FK)",constraint=false];
+}
